@@ -1,0 +1,37 @@
+Source: misp
+Section: php
+Priority: optional
+Maintainer: MISP Developers <info@circl.lu>
+Build-Depends: composer,
+               debhelper (>= 9),
+               dh-exec,
+               git,
+               php-intl,
+               php-zip,
+               pkg-php-tools (>= 1.7~)
+Standards-Version: 3.9.6
+Homepage: https://github.com/misp/misp
+
+Package: misp
+Architecture: all
+Depends: php-cli,
+         php-dom,
+         php-intl,
+         php-ldap,
+         php-mbstring,
+         php-mysql,
+         php-sqlite3,
+         php-xml,
+         sqlite,
+         unzip,
+         dbconfig-mysql | dbconfig-no-thanks,
+         ${misc:Depends}
+Recommends: apache2 | httpd,
+            libapache2-mod-php,
+            default-mysql-server | virtual-mysql-server
+Description: ${phpcomposer:description}
+ MISP is an open source software solution for collecting, storing, distributing
+ and sharing cyber security indicators and threats about cyber security
+ incidents analysis and malware analysis. MISP is designed by and for incident
+ analysts, security and ICT professionals or malware reversers to support their
+ day-to-day operations to share structured information efficiently.

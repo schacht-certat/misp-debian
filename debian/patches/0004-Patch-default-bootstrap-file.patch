@@ -1,0 +1,27 @@
+From: Birger Schacht <schacht@cert.at>
+Date: Thu, 11 Feb 2021 12:55:12 +0100
+Subject: Patch default bootstrap file
+
+---
+ INSTALL/ansible/roles/misp/templates/misp/config/bootstrap.php | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/INSTALL/ansible/roles/misp/templates/misp/config/bootstrap.php b/INSTALL/ansible/roles/misp/templates/misp/config/bootstrap.php
+index fb393c2..5ecc16a 100755
+--- a/INSTALL/ansible/roles/misp/templates/misp/config/bootstrap.php
++++ b/INSTALL/ansible/roles/misp/templates/misp/config/bootstrap.php
+@@ -85,6 +85,14 @@
+ Cache::config('default', array('engine' => 'File'));
+ Configure::load('config');
+ 
++/*
++ * Load global configuration file from /etc/misp/config.php
++ */
++if (file_exists('/etc/misp/config.php')) {
++    Configure::config('global', new PhpConfig('/etc/misp/'));
++    Configure::load('config', 'global');
++}
++
+ if (!Configure::read('MISP.baseurl')) {
+ 	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
+ 		if ($_SERVER['SERVER_PORT'] == 443) {

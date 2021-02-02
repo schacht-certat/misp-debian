@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+app/* /usr/share/misp
+INSTALL/ansible/roles/misp/templates/misp/config/* /usr/share/misp/Config/
+debian/misp.local.conf /etc/apache2/sites-available/
+debian/config.php /etc/misp/
+INSTALL/MYSQL.sql => /usr/share/dbconfig-common/data/misp/install/mysql
